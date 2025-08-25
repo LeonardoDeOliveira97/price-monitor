@@ -2,12 +2,12 @@
 
 namespace App\Controllers;
 
-class Dashboard extends BaseController
+class HomeController extends BaseController
 {
     public function index(): string
     {
         $data = [];
-        $data['content'] = "index";
+        $data['content'] = "Pages/Home/index";
         return view('layout/main', $data);
     }
 }

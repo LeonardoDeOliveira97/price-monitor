@@ -15,15 +15,39 @@ if (isset($_SERVER['APP_ENV']) && !empty($_SERVER['APP_ENV'])) {
 }
 
 if ($environment !== 'development') {
+    /*
+    | --------------------------------------------------------------------
+    | PRODUCTION ENVIRONMENT
+    | --------------------------------------------------------------------
+    */
+
     defined('APP_URL') || define('APP_URL', $_SERVER['APP_URL']);
 
-    // Disable error reporting for production
+    // Database Credentials
+    defined('DB_HOST') || define('DB_HOST', $_SERVER['DB_HOST']);
+    defined('DB_USER') || define('DB_USER', $_SERVER['DB_USER']);
+    defined('DB_PASS') || define('DB_PASS', $_SERVER['DB_PASS']);
+    defined('DB_NAME') || define('DB_NAME', $_SERVER['DB_NAME']);
+
+    // Disable error reporting
     error_reporting(0);
     ini_set('display_errors', '0');
 } else {
+    /*
+    | --------------------------------------------------------------------
+    | DEVELOPMENT ENVIRONMENT
+    | --------------------------------------------------------------------
+    */
+
     defined('APP_URL') || define('APP_URL', 'http://localhost:8080');
 
-    // Enable error reporting for development
+    // Database Credentials
+    defined('DB_HOST') || define('DB_HOST', 'localhost');
+    defined('DB_USER') || define('DB_USER', 'root');
+    defined('DB_PASS') || define('DB_PASS', '');
+    defined('DB_NAME') || define('DB_NAME', 'price_monitor');
+
+    // Enable error reporting
     error_reporting(E_ALL);
     ini_set('display_errors', '1');
 }
