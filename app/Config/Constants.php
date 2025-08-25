@@ -2,6 +2,34 @@
 
 /*
  | --------------------------------------------------------------------
+ | Custom Constants
+ | --------------------------------------------------------------------
+ */
+
+defined('APP_TITLE') || define('APP_TITLE', 'Price Monitor');
+
+$environment = 'development';
+
+if (isset($_SERVER['APP_ENV']) && !empty($_SERVER['APP_ENV'])) {
+    $environment = $_SERVER['APP_ENV'];
+}
+
+if ($environment !== 'development') {
+    defined('APP_URL') || define('APP_URL', $_SERVER['APP_URL']);
+
+    // Disable error reporting for production
+    error_reporting(0);
+    ini_set('display_errors', '0');
+} else {
+    defined('APP_URL') || define('APP_URL', 'http://localhost:8080');
+
+    // Enable error reporting for development
+    error_reporting(E_ALL);
+    ini_set('display_errors', '1');
+}
+
+/*
+ | --------------------------------------------------------------------
  | App Namespace
  | --------------------------------------------------------------------
  |
