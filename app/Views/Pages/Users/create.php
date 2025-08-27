@@ -1,68 +1,65 @@
 <div id="layoutSidenav_content">
     <main>
         <div class="container-fluid px-4">
-            <h1 class="mt-4">Usuários</h1>
+            <h1 class="mt-4">Cadastrar Usuário</h1>
             <ol class="breadcrumb mb-4">
-                <li class="breadcrumb-item active">Aqui estão os usuários cadastrados no sistema</li>
+                <li class="breadcrumb-item active">Nesta tela você pode cadastrar um novo usuário</li>
             </ol>
+
             <div class="row">
-                <div class="col-xl-3 col-md-6">
-                    <div class="card bg-primary text-white mb-4">
-                        <div class="card-body">Primary Card</div>
-                        <div class="card-footer d-flex align-items-center justify-content-between">
-                            <a class="small text-white stretched-link" href="#">View Details</a>
-                            <div class="small text-white"><i class="fas fa-angle-right"></i></div>
-                        </div>
+                <form action="<?= base_url('usuarios/novo') ?>" class="col-md-6">
+                    <div id="callbackStoreUser"></div>
+                    <div class="mb-2">
+                        <label for="name" class="form-label">Nome</label>
+                        <input type="text" class="form-control form-control-sm" id="name" name="name" required>
                     </div>
-                </div>
-                <div class="col-xl-3 col-md-6">
-                    <div class="card bg-warning text-white mb-4">
-                        <div class="card-body">Warning Card</div>
-                        <div class="card-footer d-flex align-items-center justify-content-between">
-                            <a class="small text-white stretched-link" href="#">View Details</a>
-                            <div class="small text-white"><i class="fas fa-angle-right"></i></div>
-                        </div>
+                    <div class="mb-2">
+                        <label for="email" class="form-label">Email</label>
+                        <input type="email" class="form-control form-control-sm" id="email" name="email" required>
                     </div>
-                </div>
-                <div class="col-xl-3 col-md-6">
-                    <div class="card bg-success text-white mb-4">
-                        <div class="card-body">Success Card</div>
-                        <div class="card-footer d-flex align-items-center justify-content-between">
-                            <a class="small text-white stretched-link" href="#">View Details</a>
-                            <div class="small text-white"><i class="fas fa-angle-right"></i></div>
-                        </div>
+                    <div class="mb-3">
+                        <label for="password" class="form-label">Senha</label>
+                        <input type="password" class="form-control form-control-sm" id="password" name="password" required>
                     </div>
-                </div>
-                <div class="col-xl-3 col-md-6">
-                    <div class="card bg-danger text-white mb-4">
-                        <div class="card-body">Danger Card</div>
-                        <div class="card-footer d-flex align-items-center justify-content-between">
-                            <a class="small text-white stretched-link" href="#">View Details</a>
-                            <div class="small text-white"><i class="fas fa-angle-right"></i></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-xl-6">
-                    <div class="card mb-4">
-                        <div class="card-header">
-                            <i class="fas fa-chart-area me-1"></i>
-                            Area Chart Example
-                        </div>
-                        <div class="card-body"><canvas id="myAreaChart" width="100%" height="40"></canvas></div>
-                    </div>
-                </div>
-                <div class="col-xl-6">
-                    <div class="card mb-4">
-                        <div class="card-header">
-                            <i class="fas fa-chart-bar me-1"></i>
-                            Bar Chart Example
-                        </div>
-                        <div class="card-body"><canvas id="myBarChart" width="100%" height="40"></canvas></div>
-                    </div>
-                </div>
+                    <button type="submit" id="btnSubmit" class="btn btn-dark"><i class="fas fa-user-plus"></i> Cadastrar</button>
+                </form>
             </div>
         </div>
     </main>
 </div>
+
+<script>
+    document.querySelector('form').addEventListener('submit', function(event) {
+        event.preventDefault();
+
+        const btnSubmit = document.getElementById('btnSubmit');
+        btnSubmit.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Cadastrando...';
+        btnSubmit.disabled = true;
+
+        const form = event.target;
+        const formData = new FormData(form);
+
+
+
+        fetch(form.action, {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    showAlertMessage('callbackStoreUser', 'success', data.message);
+                } else {
+                    showAlertMessage('callbackStoreUser', 'danger', data.message);
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                showAlertMessage('callbackStoreUser', 'danger', error.message);
+            })
+            .finally(() => {
+                btnSubmit.innerHTML = '<i class="fas fa-user-plus"></i> Cadastrar';
+                btnSubmit.disabled = false;
+            });
+    });
+</script>

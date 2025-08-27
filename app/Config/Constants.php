@@ -47,6 +47,11 @@ if ($environment !== 'development') {
     defined('DB_PASS') || define('DB_PASS', '');
     defined('DB_NAME') || define('DB_NAME', 'price_monitor');
 
+    // Mercado Livre API Credentials
+    defined('MERCADO_LIVRE_CLIENT_ID') || define('MERCADO_LIVRE_CLIENT_ID', '2526947363735751');
+    defined('MERCADO_LIVRE_CLIENT_SECRET') || define('MERCADO_LIVRE_CLIENT_SECRET', 'EPy5WlzyQndCOIl1jlmjt5W1lHJLi4Ju');
+    defined('MERCADO_LIVRE_REDIRECT_URI') || define('MERCADO_LIVRE_REDIRECT_URI', 'https://price-monitor.panteaodigital.com.br/show_code_callback.php');
+
     // Enable error reporting
     error_reporting(E_ALL);
     ini_set('display_errors', '1');

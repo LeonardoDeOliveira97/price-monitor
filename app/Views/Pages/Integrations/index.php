@@ -1,23 +1,23 @@
 <div id="layoutSidenav_content">
     <main>
         <div class="container-fluid px-4">
-            <h1 class="mt-4">Produtos</h1>
+            <h1 class="mt-4">Integrações</h1>
             <ol class="breadcrumb mb-4">
-                <li class="breadcrumb-item active">Aqui você pode gerenciar os produtos cadastrados no sistema</li>
+                <li class="breadcrumb-item active">Aqui você pode gerenciar as integrações cadastradas no sistema</li>
             </ol>
 
             <div class="card mb-4">
                 <div class="card-header">
-                    <i class="fas fa-boxes me-1"></i>
-                    Produtos Cadastrados
+                    <i class="fas fa-plug me-1"></i>
+                    Integrações Cadastradas
                 </div>
                 <div class="card-body">
-                    <div id="callbackListProducts"></div>
+                    <div id="callbackListIntegrations"></div>
                     <table id="dataTable">
                         <thead>
                             <tr>
                                 <th>Nome</th>
-                                <th>Preço</th>
+                                <th>E-mail</th>
                                 <th>Criado em</th>
                                 <th>Editado em</th>
                                 <th>Ação</th>
